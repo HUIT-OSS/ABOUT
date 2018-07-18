@@ -182,11 +182,22 @@ class Controller:
 
         self.uidaruba = json.loads(resp.text)['_global_result']['UIDARUBA']
 
+    def logout(self):
+        """Logs out from the controller."""
+        url = self.base_url + "/api/logout"
+
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            resp = self.session.post(url, verify=False)
+
+        print(json.loads(resp.text)['_global_result']['status_str'])
+
 
 def args_handler():
     """Handles the argparse stuff."""
     parser = argparse.ArgumentParser(description='Provision APs (303H/334)')
-    parser.add_argument('-d', '--dry', help='dry-run (just print list of aps)',
+    parser.add_argument('-d', '--dry',
+                        help='dry-run (just print list of aps)',
                         action='store_true')
     parser.add_argument('building', help="building name")
     parser.add_argument('floor', help="floor number")
@@ -216,6 +227,9 @@ def main():
 
                 if not args.dry:
                     controller.provision(mac, name, "mesh-{}".format(role))
+
+    if not args.dry:
+        controller.logout()
 
 
 if __name__ == "__main__":
