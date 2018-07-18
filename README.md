@@ -31,8 +31,14 @@ optional arguments:
 
 ### `input.csv` format
 
+`building-name,mesh-role,floor-number,mac-address,ap-name`
+
+Ex:
 ```
-building-name,mesh-role,floor-number,mac-address,ap-name
+Randolph,Portal,1,A8FFDEADBEEF,randolph-cafe-ap1
+Randolph,Portal,1,A8FFDEADBEEF,randolph-f1-ap1
+Randolph,Point,1,20FFDEADBEEF,randolph-f2-ap1
+Randolph,Point,1,20FFDEADBEEF,randolph-f2-ap2
 ```
 
 ### `credentials.py`
