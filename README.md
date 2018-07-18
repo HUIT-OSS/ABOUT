@@ -17,7 +17,7 @@ Ensure `python3` is in your `$PATH`, and that `main.py` has execute permissions 
 
 ```
 $ ./main.py -h
-usage: main.py [-h] building floor
+usage: main.py [-h] [-d] building floor
 
 Provision APs (303H/334)
 
@@ -27,6 +27,7 @@ positional arguments:
 
 optional arguments:
   -h, --help  show this help message and exit
+  -d, --dry   dry-run (just print list of aps)
 ```
 
 ### `input.csv` format
