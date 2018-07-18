@@ -1,6 +1,5 @@
 # custom
-credentials.py
-credentials.pyc
+credentials.py*
 input.csv
 .DS_Store
 
