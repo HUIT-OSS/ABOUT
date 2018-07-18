@@ -96,6 +96,7 @@ class AP:
 
     def ap_prov(self, new_name, mesh_role):
         """Runs the `ap_prov` API call to push the modified AP parameters."""
+        ap_group = credentials.api['mesh_group_base'] + mesh_role
         ap_prov_url = "{}/configuration/object/ap_prov?{}&UIDARUBA={}".format(
             self.base_url,
             self.config_path,
@@ -103,8 +104,7 @@ class AP:
 
         ap_prov_dict = {"_action": "modify",
                         "ap_name": {"_action": "modify", "ap-name": new_name},
-                        "ap_group": {"_action": "modify",
-                                     "ap-group": "indoor-adams-{}".format(mesh_role)},
+                        "ap_group": {"_action": "modify", "ap-group": ap_group},
                         "mesh_role": {"_action": "modify", "mesh_role_sel": mesh_role}
                         }
 
@@ -165,11 +165,14 @@ class AP:
 def main():
     """Runs through a CSV to provision APs based on building name and floor number."""
     parser = argparse.ArgumentParser(description='Provision APs (303H/334)')
+    parser.add_argument('-d', '--dry', help='dry-run (just print list of aps)', action='store_true')
     parser.add_argument('building', help="building name")
     parser.add_argument('floor', help="floor number")
     args = parser.parse_args()
 
-    # ap = AP()
+    if not args.dry:
+        print("ap provisioning!")
+        # ap = AP()
 
     with open("input.csv", 'r') as file_in:
         csv_data = csv.reader(file_in, delimiter=',')
@@ -183,7 +186,10 @@ def main():
 
             if building == args.building and floor == args.floor:
                 print("Role: {}, MAC: {}, Name: {}".format(role, mac, name))
-                # ap.provision(mac, name, "mesh-{}".format(role))
+
+                if not args.dry:
+                    print("provisioning!")
+                    # ap.provision(mac, name, "mesh-{}".format(role))
 
 
 if __name__ == "__main__":

@@ -43,7 +43,7 @@ Randolph,Point,1,20FFDEADBEEF,randolph-f2-ap2
 
 ### `credentials.py`
 
-The credentials used to connect to the NetMRI API are contained in a file named `credentials.py`. This must be created in the same directory as the script, and formatted like the following (whitespace doesn't really matter just needs to be a proper pythonic `dict` object):
+The credentials used to connect to the Mobility Master/Controller API are contained in a file named `credentials.py`. This must be created in the same directory as the script, and formatted like the following (whitespace doesn't really matter just needs to be a proper pythonic `dict` object):
 
 ```
 api = {
@@ -51,6 +51,7 @@ api = {
     'password' : 'changeme',
     'base_url' : 'https://<controller IP>:4343/v1',
     'ox60_config_path' : 'configpath=/md/wrls-cluster/<controller MAC>'
+    'base_ap_group' : 'changeme'
 }
 ```
 
