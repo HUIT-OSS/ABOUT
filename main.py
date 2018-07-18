@@ -171,8 +171,7 @@ def main():
     args = parser.parse_args()
 
     if not args.dry:
-        print("ap provisioning!")
-        # ap = AP()
+        ap = AP()
 
     with open("input.csv", 'r') as file_in:
         csv_data = csv.reader(file_in, delimiter=',')
@@ -188,8 +187,7 @@ def main():
                 print("Role: {}, MAC: {}, Name: {}".format(role, mac, name))
 
                 if not args.dry:
-                    print("provisioning!")
-                    # ap.provision(mac, name, "mesh-{}".format(role))
+                    ap.provision(mac, name, "mesh-{}".format(role))
 
 
 if __name__ == "__main__":
