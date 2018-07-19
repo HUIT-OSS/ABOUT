@@ -18,7 +18,7 @@ class Controller:
         self.config_path = credentials.api['config_path']
         self.group_base = credentials.api['group_base']
         self.session = requests.session()
-        self.login()
+        self.uidaruba = self.login()
 
     def rename(self, serial, name):
         """Renames an AP by serial number."""
@@ -171,7 +171,7 @@ class Controller:
             return self.session.post(url, json=obj, verify=False)
 
     def login(self):
-        """Sets the UIDARUBA session cookie."""
+        """Returns the UIDARUBA session cookie."""
         url = self.base_url + "/api/login"
         creds = {'username': credentials.api['username'],
                  'password': credentials.api['password']}
@@ -180,7 +180,7 @@ class Controller:
             warnings.simplefilter("ignore")
             resp = self.session.post(url, creds, verify=False)
 
-        self.uidaruba = json.loads(resp.text)['_global_result']['UIDARUBA']
+        return json.loads(resp.text)['_global_result']['UIDARUBA']
 
     def logout(self):
         """Logs out from the controller."""
