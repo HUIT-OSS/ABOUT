@@ -1,4 +1,4 @@
-# Automated Aruba AP Provisioning
+# (The HPe) Aruba BOotstrap UTility
 
 Python script to interface with the Mobility Master/Controller to process an input CSV file containing APs to provision. We are currently provisioning Aruba 334 APs as mesh-portals, and Aruba 303H APs as mesh-points.
 
