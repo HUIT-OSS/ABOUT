@@ -2,7 +2,7 @@
 
 Python script to interface with the Mobility Master/Controller to process an input CSV file containing APs to provision. We are currently provisioning Aruba 334 APs as mesh-portals, and Aruba 303H APs as mesh-points.
 
-Once we plug the APs for a floor into a PoE switch (with layer 2 access to the Mobility Controller), with factory-default settings they should show up in the controller's web GUI with their ap-names set to their MAC address. Once we see all the APs up in the controller, the script is run by specifying the building and floor corresponding to the connected APs. This will push the new ap-name, ap-group, and mesh-role configuration changes to the APs, then they will reboot. The 334s seem to come back up in ~3-5 mins, while the 303Hs have been taking more like ~10-30 mins.
+Once we plug the APs for a floor into a PoE switch (with layer 3 access to the Mobility Controller), with factory-default settings they should show up in the controller's web GUI with their ap-names set to their MAC address. Once we see all the APs up in the controller, the script is run by specifying the building and floor corresponding to the connected APs. This will push the new ap-name, ap-group, and mesh-role configuration changes to the APs, then they will reboot. The 334s seem to come back up in ~3-5 mins, while the 303Hs have been taking more like ~10-30 mins.
 
 If an AP is already provisioned, its name will most likely no longer be its MAC address, thus the script will do nothing to it. If an AP fails to show up on the controller, a power-cycle usually will make it appear.
 
